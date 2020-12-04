@@ -22,12 +22,14 @@ public class Controller {
     private int Nr1;
     private int Nr2;
     private int result;
+    private char operator;
 
     @FXML
     void addClick() {
         Nr1 = Integer.parseInt(Nr1Field.getText());
         Nr2 = Integer.parseInt(Nr2Field.getText());
-        result = calculate(Nr1, Nr2, '+');
+        operator = '+';
+        result = calculate(Nr1, Nr2);
         ResultField.setText(Integer.toString(result));
         save();
     }
@@ -36,7 +38,8 @@ public class Controller {
     void subClick() {
         Nr1 = Integer.parseInt(Nr1Field.getText());
         Nr2 = Integer.parseInt(Nr2Field.getText());
-        result = calculate(Nr1, Nr2, '-');
+        operator = '-';
+        result = calculate(Nr1, Nr2);
         ResultField.setText(Integer.toString(result));
         save();
     }
@@ -45,7 +48,8 @@ public class Controller {
     void multiClick() {
         Nr1 = Integer.parseInt(Nr1Field.getText());
         Nr2 = Integer.parseInt(Nr2Field.getText());
-        result = calculate(Nr1, Nr2, '*');
+        operator = '*';
+        result = calculate(Nr1, Nr2);
         ResultField.setText(Integer.toString(result));
         save();
     }
@@ -54,12 +58,13 @@ public class Controller {
     void divideClick() {
         Nr1 = Integer.parseInt(Nr1Field.getText());
         Nr2 = Integer.parseInt(Nr2Field.getText());
-        result = calculate(Nr1, Nr2, '/');
+        operator = '/';
+        result = calculate(Nr1, Nr2);
         ResultField.setText(Integer.toString(result));
         save();
     }
 
-    public int calculate(int Nr1, int Nr2, char operator) {
+    public int calculate(int Nr1, int Nr2) {
         switch (operator) {
             case '+':
                 return Nr1 + Nr2;
@@ -83,7 +88,7 @@ public class Controller {
         }
         try {
             FileWriter fw = new FileWriter("result.txt");
-            fw.write(Nr1 + " " + Nr2 +  " = " + result);
+            fw.write(Nr1 + " " + operator + " " + Nr2 +  " = " + result);
             System.out.println(Nr1);
             System.out.println(Nr2);
             fw.close();
